@@ -122,8 +122,9 @@ var module, window, define, renderjson=(function() {
             return el;
         };
 
-        if (json === null) return themetext(null, my_indent, "keyword", "null");
-        if (json === void 0) return themetext(null, my_indent, "keyword", "undefined");
+        // nully =  JSON null. Inspired by python concepts of truthy and falsy
+        if (json === null) return themetext(null, my_indent, "keyword null nully", "null");
+        if (json === void 0) return themetext(null, my_indent, "keyword undefined nully", "undefined");
 
         if (typeof(json) == "string" && json.length > options.max_string_length)
             return disclosure('"', json.substr(0,options.max_string_length)+" ...", '"', "string", function () {
