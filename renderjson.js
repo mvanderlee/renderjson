@@ -130,8 +130,11 @@ var module, window, define, renderjson=(function() {
                 return append(span("string"), themetext(null, my_indent, "string", JSON.stringify(json)));
             });
 
-        if (typeof(json) != "object" || [Number, String, Boolean, Date].indexOf(json.constructor) >= 0) // Strings, numbers and bools
+        if (typeof(json) != "object" || [Number, String, Date].indexOf(json.constructor) >= 0) // Strings, numbers, and date
             return themetext(null, my_indent, typeof(json), JSON.stringify(json));
+        
+        if (typeof(json) != "object" || [Boolean].indexOf(json.constructor) >= 0) // Bools
+            return themetext(null, my_indent, "boolean " + JSON.stringify(json), JSON.stringify(json));
 
         if (json.constructor == Array) {
             if (json.length == 0) return themetext(null, my_indent, "array syntax", "[]");
